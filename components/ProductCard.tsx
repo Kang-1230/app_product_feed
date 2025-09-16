@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ProductItem } from "@/type/productItem";
 import { Image, Text, View } from "react-native";
 
@@ -30,6 +31,14 @@ const ProductCard = ({ item }: { item: ProductItem }) => {
           </Text>
         </View>
       </View>
+=======
+import { Text, View } from "react-native";
+
+const ProductCard = () => {
+  return (
+    <View>
+      <Text>index</Text>
+>>>>>>> b882be43431daaf0121441b2e4428564f774726a
     </View>
   );
 };
