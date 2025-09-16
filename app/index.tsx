@@ -1,11 +1,26 @@
-import { Text, View } from "react-native";
+import ProductCard from "@/components/ProductCard";
+import { getProducts } from "@/lib/api";
+import { ProductItem } from "@/type/productItem";
+import { useEffect, useState } from "react";
+import { FlatList, View } from "react-native";
 
-const index = () => {
+const Index = () => {
+  const [products, setProducts] = useState<ProductItem[]>([]);
+
+  useEffect(() => {
+    getProducts().then((products) => {
+      setProducts(products);
+    });
+  }, []);
+
   return (
     <View>
-      <Text>index</Text>
+      <FlatList
+        data={products}
+        renderItem={({ item }) => <ProductCard item={item} />}
+      />
     </View>
   );
 };
 
-export default index;
+export default Index;
