@@ -3,7 +3,7 @@ import { RootStackParamList } from "@/type/navigation";
 import { ProductItem } from "@/type/productItem";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { Button, Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Home">;
 
@@ -43,7 +43,6 @@ const ProductCard = ({ item }: { item: ProductItem }) => {
           </View>
         </View>
       </View>
-      <Button title="담기" onPress={() => addToCart(item)} />
     </TouchableOpacity>
   );
 };
