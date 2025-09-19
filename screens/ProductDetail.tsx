@@ -8,6 +8,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "Details">;
 export default function ProductDetail({ route, navigation }: Props) {
   const { id } = route.params;
 
+  console.log("navigation:", navigation); // 이거 추가해서 확인
+  console.log("route:", route);
+
   return (
     <View>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>

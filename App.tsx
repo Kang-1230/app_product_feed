@@ -1,10 +1,11 @@
-import { Navigation } from "@/navigation/RootNavigator";
+// App.tsx
+import RootNavigator from "@/navigation/RootNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <Navigation />
+      <RootNavigator />
     </SafeAreaProvider>
   );
 }

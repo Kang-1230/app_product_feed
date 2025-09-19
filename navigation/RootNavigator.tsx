@@ -1,18 +1,20 @@
 // src/navigation/RootNavigator.tsx
 import Home from "@/screens/Home";
 import ProductDetail from "@/screens/ProductDetail";
-import { createStaticNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "@/type/navigation";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 
-// 1) 스크린 정의 (정적 API)
-const RootStack = createNativeStackNavigator({
-  screens: {
-    Home: Home,
-    Details: {
-      screen: ProductDetail,
-    },
-  },
-});
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-// 2) 내비게이션 객체 생성 및 내보내기
-export const Navigation = createStaticNavigation(RootStack);
+export default function RootNavigator() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Details" component={ProductDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
