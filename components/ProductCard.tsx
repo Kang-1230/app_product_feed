@@ -1,10 +1,18 @@
+import { RootStackParamList } from "@/type/navigation";
 import { ProductItem } from "@/type/productItem";
-import { Link } from "expo-router";
-import { Image, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+
+type Nav = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 const ProductCard = ({ item }: { item: ProductItem }) => {
+  const navigation = useNavigation<Nav>();
+
   return (
-    <Link href={`/product/${item.id}`}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Details", { id: item.id.toString() })}
+    >
       <View className="flex flex-col max-w-[1200px]">
         <Image
           source={{ uri: item.image }}
@@ -21,23 +29,19 @@ const ProductCard = ({ item }: { item: ProductItem }) => {
 
           <Text
             className="text-[13px] leading-[18px] h-[54px] overflow-hidden"
-            numberOfLines={3} // RN에서는 이렇게 줄 제한 가능
+            numberOfLines={3}
           >
             {item.description}
           </Text>
 
           <View className="flex-row gap-[2px] items-center">
-            {/* <Image
-            source={require("../assets/review.png")} // RN은 보통 require 로 로컬 이미지
-            style={{ width: 18, height: 18 }}
-          /> */}
             <Text className="text-[12px] leading-[18px]">
               할인율 {item.discountRate}
             </Text>
           </View>
         </View>
       </View>
-    </Link>
+    </TouchableOpacity>
   );
 };
 

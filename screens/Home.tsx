@@ -1,10 +1,10 @@
-import ProductCard from "@/components/ProductCard";
 import { getProducts } from "@/lib/api";
 import { ProductItem } from "@/type/productItem";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, FlatList } from "react-native";
+import ProductCard from "../components/ProductCard";
 
-const Index = () => {
+export default function Home() {
   const [products, setProducts] = useState<ProductItem[]>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +18,7 @@ const Index = () => {
     const end = (page + 1) * 10;
     const newData = newProducts.slice(start, end);
 
-    setProducts([...products, ...newData]);
+    setProducts((prev) => [...prev, ...newData]);
     setPage((prev) => prev + 1);
     setIsLoading(false);
   };
@@ -31,17 +31,13 @@ const Index = () => {
   }, []);
 
   return (
-    <View>
-      <FlatList
-        data={products}
-        renderItem={({ item }) => <ProductCard item={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={() => (isLoading ? <ActivityIndicator /> : null)}
-      />
-    </View>
+    <FlatList
+      data={products}
+      renderItem={({ item }) => <ProductCard item={item} />}
+      keyExtractor={(item) => item.id.toString()}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={() => (isLoading ? <ActivityIndicator /> : null)}
+    />
   );
-};
-
-export default Index;
+}
